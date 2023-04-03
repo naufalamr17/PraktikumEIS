@@ -18,6 +18,13 @@ void loop() {
   if (isnan(h) || isnan(t)) {
     Serial.println("Gagal membaca data dari sensor DHT");
     return;
+  } else {
+    Serial.print(F("Humidity: "));
+    Serial.print(h);
+    Serial.print(F("  Temperature: "));
+    Serial.print(t);
+    Serial.print(F("°C "));
+    Serial.print("\n");
   }
   delay(10000);
 }
