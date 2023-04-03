@@ -4,17 +4,17 @@ $userDatabase = "root";
 $passwordUser = "";
 $databaseName = "esp";
 
-$koneksi = mysqli_connect($hostname, $userDatabase, $passwordUser, $databaseName) or die(mysqli_error($koneksi));
+$koneksi = mysqli_connect($hostname, $userDatabase, $passwordUser, $databaseName) or die (mysqli_error($koneksi));
 
 $temperature = $_GET["temperature"];
 $humidity = $_GET["humidity"];
 
-$sql = "INSERT INTO sensor_data (temperature, humidity) VALUES ($temperature, $humidity)";
+$sql = mysqli_query($koneksi,"INSERT INTO sensor_data (temperature, humidity) VALUES ($temperature, $humidity)") or die (mysqli_error($koneksi));
 
-if ($koneksi->query($sql)===TRUE) {
+if($sql) {
     echo "Data berhasil diinput";
 } else {
-    echo "Error: " . $sql . "<br>" . $koneksi->error;
+    echo "Error";
 }
 
 $koneksi->close();
